@@ -1,22 +1,19 @@
-# CinéLibre — V4
+# CinéLibre — V5
 
-Version statique améliorée du prototype CinéLibre.
+Prototype statique d’une plateforme de découverte de contenus gratuits et légaux.
 
-## Nouveautés V4
-- page d'accueil streaming plus complète
-- catalogue enrichi de films et séries fictifs
-- recherche instantanée
-- filtres type / genre / tri
-- section nouveautés
-- ma liste avec sauvegarde localStorage
-- fiches détaillées + lecture de démonstration
-- compte en mode démo
-- exploration par genres
-- section soutien
-- design responsive ordinateur / mobile
+## Nouveautés V5
+- Interface plus premium et plus propre
+- Barre de recherche et filtres conservés
+- Ma liste avec sauvegarde locale
+- Section « Continuer à découvrir »
+- Mode clair / sombre
+- Inscription newsletter en mode démo
+- Fenêtre de lecture de démonstration
+- Responsive ordinateur / mobile
+- Catalogue fictif uniquement
 
-## Important
-Les titres affichés sont fictifs. Pour publier de vrais films, séries ou bandes-annonces, utiliser uniquement des œuvres du domaine public, sous licence compatible, dont les droits sont détenus, ou pour lesquelles la diffusion a été autorisée.
+## Mise en ligne GitHub Pages
+Remplace les fichiers `index.html`, `style.css`, `script.js` et `README.md` de ton dépôt par ceux de cette version, puis commit directement sur `main`. Si Pages utilise toujours `main` et `/ (root)`, GitHub publiera les changements depuis cette source.
 
-## GitHub Pages
-Remplacer les fichiers de la V3 par les 4 fichiers de cette V4 à la racine du dépôt, puis faire un commit sur `main`. GitHub Pages republiera le site automatiquement si la source reste `main` + `/ (root)`.
+⚠️ Pour une vraie mise en production, n’ajoute que des contenus libres de droits, sous licence compatible ou exploités avec autorisation.
