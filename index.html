@@ -3,137 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CinéLibre — films et séries disponibles légalement et gratuitement.">
-  <title>CinéLibre — Films & Séries</title>
+  <meta name="description" content="CinéLibre — plateforme de découverte de films et séries disponibles légalement et gratuitement.">
+  <title>CinéLibre — Le cinéma pour tous</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#accueil" aria-label="CinéLibre accueil">
-      <span class="brand-mark">▶</span>
-      <span>Ciné<span>Libre</span></span>
-    </a>
-    <nav class="nav" aria-label="Navigation principale">
-      <a href="#accueil">Accueil</a>
-      <a href="#films">Films</a>
-      <a href="#series">Séries</a>
-      <a href="#nouveautes">Nouveautés</a>
-      <a href="#favoris">❤️ Favoris <b id="favCount">0</b></a>
-    </nav>
-    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
-  </header>
+<header class="topbar">
+  <a class="brand" href="#accueil"><span class="brand-mark">▶</span><span>Ciné<span>Libre</span></span></a>
+  <nav class="nav" id="nav">
+    <a class="active" href="#accueil">Accueil</a><a href="#films">Films</a><a href="#series">Séries</a><a href="#nouveautes">Nouveautés</a><a href="#genres">Genres</a><a href="#favoris">❤️ Ma liste <b id="favCount">0</b></a>
+  </nav>
+  <div class="top-actions"><button class="account" id="accountBtn">👤 Mon compte</button><button class="menu-btn" id="menuBtn">☰</button></div>
+</header>
 
-  <main>
-    <section class="hero" id="accueil">
-      <div class="hero-content">
-        <div class="eyebrow">🎬 LA PLATEFORME CINÉ LIBRE</div>
-        <h1>Regarde.<br><span>Découvre.</span><br>Profite.</h1>
-        <p>Une expérience de streaming simple, moderne et pensée pour mettre en avant des œuvres disponibles légalement.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#films">▶ Explorer les films</a>
-          <a class="btn ghost" href="#series">Voir les séries</a>
-        </div>
-        <div class="hero-note">🔒 CinéLibre ne diffuse que des contenus dont la diffusion est autorisée.</div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="orb orb1"></div><div class="orb orb2"></div>
-        <div class="screen">
-          <div class="screen-top">CINÉLIBRE <span>● EN LIGNE</span></div>
-          <div class="screen-title">TON PROCHAIN<br>FILM COMMENCE ICI</div>
-          <div class="screen-bottom"><span>HD</span><span>GRATUIT</span><span>LÉGAL</span></div>
-        </div>
-      </div>
-    </section>
+<main>
+<section class="hero" id="accueil">
+  <div class="hero-content">
+    <div class="eyebrow">🎬 LE CINÉMA POUR TOUS</div>
+    <h1>Des histoires<br><span>à découvrir.</span></h1>
+    <p>Une plateforme simple pour découvrir des œuvres gratuites et légales, avec une expérience pensée pour tous les écrans.</p>
+    <div class="hero-actions"><a class="btn primary" href="#catalogue">▶ Explorer le catalogue</a><a class="btn ghost" href="#nouveautes">✨ Nouveautés</a></div>
+    <div class="trust"><span>✓ Gratuit</span><span>✓ Légal</span><span>✓ Sans publicité intrusive</span></div>
+  </div>
+  <div class="hero-art"><div class="hero-glow"></div><div class="feature-poster"><span class="badge">À L'AFFICHE</span><div class="fp-icon">✦</div><strong>Les lumières<br>du large</strong><small>AVENTURE • 2026</small></div><div class="floating-card">★ 4,8 <span>Très apprécié</span></div></div>
+</section>
 
-    <section class="toolbar-wrap">
-      <div class="toolbar">
-        <label class="search">
-          <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="Rechercher un film, une série, un genre..." autocomplete="off">
-        </label>
-        <select id="typeFilter" aria-label="Type">
-          <option value="all">Tous</option>
-          <option value="film">Films</option>
-          <option value="series">Séries</option>
-        </select>
-        <select id="genreFilter" aria-label="Genre">
-          <option value="all">Tous les genres</option>
-          <option value="Aventure">Aventure</option>
-          <option value="Comédie">Comédie</option>
-          <option value="Drame">Drame</option>
-          <option value="Famille">Famille</option>
-          <option value="Documentaire">Documentaire</option>
-          <option value="Fantastique">Fantastique</option>
-        </select>
-        <select id="sortFilter" aria-label="Trier">
-          <option value="recent">Plus récents</option>
-          <option value="rating">Mieux notés</option>
-          <option value="title">Titre A-Z</option>
-        </select>
-      </div>
-      <div class="result-line"><span id="resultCount">0</span> contenu(s) disponible(s)</div>
-    </section>
+<section class="quick" id="catalogue">
+  <div class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Rechercher un titre, un genre, une année..."></div>
+  <select id="typeFilter"><option value="all">Tous les contenus</option><option value="film">Films</option><option value="series">Séries</option></select>
+  <select id="genreFilter"><option value="all">Tous les genres</option><option>Aventure</option><option>Comédie</option><option>Drame</option><option>Famille</option><option>Fantastique</option><option>Science-fiction</option><option>Documentaire</option><option>Mystère</option><option>Animation</option><option>Romance</option></select>
+  <select id="sortFilter"><option value="recent">Plus récents</option><option value="rating">Mieux notés</option><option value="title">Titre A-Z</option></select>
+</section>
+<div class="result-line"><span id="resultCount">0</span> contenus • <span id="favCount2">0</span> dans ma liste</div>
 
-    <section class="content-section" id="nouveautes">
-      <div class="section-head">
-        <div><span class="section-kicker">À découvrir</span><h2>Nouveautés</h2></div>
-        <button class="text-btn" id="showAllBtn">Tout afficher →</button>
-      </div>
-      <div class="cards" id="newCards"></div>
-    </section>
+<section class="content-section" id="nouveautes"><div class="section-head"><div><span class="section-kicker">À découvrir</span><h2>Nouveautés</h2></div><a href="#films" id="showAllBtn">Voir tout →</a></div><div class="rail" id="newCards"></div></section>
+<section class="content-section" id="films"><div class="section-head"><div><span class="section-kicker">Catalogue</span><h2>Films</h2></div><span class="section-count" id="filmCount"></span></div><div class="grid" id="filmCards"></div></section>
+<section class="content-section" id="series"><div class="section-head"><div><span class="section-kicker">À suivre</span><h2>Séries</h2></div><span class="section-count" id="seriesCount"></span></div><div class="grid" id="seriesCards"></div></section>
+<section class="content-section" id="genres"><div class="section-head"><div><span class="section-kicker">Explorer</span><h2>Par genre</h2></div></div><div class="genres" id="genreTiles"></div></section>
+<section class="content-section" id="favoris"><div class="section-head"><div><span class="section-kicker">Personnel</span><h2>Ma liste</h2></div></div><div class="grid" id="favCards"></div><div class="empty hidden" id="emptyFav">❤️ <strong>Ta liste est vide</strong><span>Ajoute tes contenus préférés avec le bouton cœur.</span></div></section>
+<section class="support"><div><span class="section-kicker">CinéLibre</span><h2>Une plateforme gratuite, construite avec la communauté.</h2><p>Le projet peut évoluer grâce aux contributions volontaires, sans rendre le catalogue payant.</p></div><button class="btn primary" id="supportBtn">❤️ Soutenir le projet</button></section>
+</main>
 
-    <section class="content-section" id="films">
-      <div class="section-head">
-        <div><span class="section-kicker">Catalogue</span><h2>Films</h2></div>
-      </div>
-      <div class="cards" id="filmCards"></div>
-    </section>
+<footer><div class="brand footer-brand"><span class="brand-mark">▶</span><span>Ciné<span>Libre</span></span></div><p>© 2026 CinéLibre — Projet indépendant.</p><p class="legal">Les contenus réels doivent être libres de droits, sous licence compatible ou exploités avec autorisation. Les titres affichés ici sont des démonstrations fictives.</p></footer>
 
-    <section class="content-section" id="series">
-      <div class="section-head">
-        <div><span class="section-kicker">À suivre</span><h2>Séries</h2></div>
-      </div>
-      <div class="cards" id="seriesCards"></div>
-    </section>
-
-    <section class="empty-state hidden" id="noResults">
-      <div>🔎</div>
-      <h2>Aucun résultat</h2>
-      <p>Essaie un autre mot-clé ou enlève un filtre.</p>
-    </section>
-
-    <section class="support" id="favoris">
-      <div>
-        <span class="section-kicker">Ton espace</span>
-        <h2>Garde tes favoris sous la main ❤️</h2>
-        <p>Les favoris sont enregistrés directement dans ton navigateur. Aucun compte n'est nécessaire pour cette V3.</p>
-      </div>
-      <div class="support-box">
-        <strong id="supportFavText">0 favori</strong>
-        <span>enregistré sur cet appareil</span>
-      </div>
-    </section>
-
-    <section class="legal">
-      <div class="legal-icon">⚖️</div>
-      <div>
-        <h3>Un catalogue gratuit, mais surtout légal</h3>
-        <p>Cette démonstration utilise des titres fictifs. Avant d'ajouter une œuvre réelle, vérifie qu'elle est dans le domaine public, sous une licence autorisant la diffusion, ou que tu possèdes les droits nécessaires.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-brand">CinéLibre</div>
-    <p>© 2026 CinéLibre — Projet indépendant.</p>
-    <div class="footer-links"><a href="#accueil">Accueil</a><a href="#films">Films</a><a href="#series">Séries</a></div>
-  </footer>
-
-  <dialog id="detailDialog">
-    <button class="close" id="closeDialog" aria-label="Fermer">×</button>
-    <div id="detailContent"></div>
-  </dialog>
-
-  <script src="script.js"></script>
+<dialog id="detailDialog"><button class="close" id="closeDialog">×</button><div id="detailContent"></div></dialog>
+<dialog id="accountDialog"><button class="close" id="closeAccount">×</button><div class="account-modal"><div class="avatar">👤</div><h2>Mon compte</h2><p>Cette version propose un espace compte en démonstration.</p><button class="btn primary" id="demoAccount">Continuer en mode démo</button></div></dialog>
+<dialog id="supportDialog"><button class="close" id="closeSupport">×</button><div class="account-modal"><div class="avatar">❤️</div><h2>Soutenir CinéLibre</h2><p>Le site reste gratuit. Une future version pourra proposer une contribution volontaire de 1 €, 3 € ou 5 € pour aider au financement du projet.</p><button class="btn primary" onclick="document.getElementById('supportDialog').close()">Compris</button></div></dialog>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
 </body>
 </html>
