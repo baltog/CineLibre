@@ -1,18 +1,17 @@
-# CinéLibre — V1
+# CinéLibre — V2
 
-Prototype statique de la plateforme.
+Version 2 du prototype statique.
 
-## Lancer le site
-Ouvre `index.html` dans un navigateur.
+## Nouveautés
+- Catalogue films et séries plus structuré
+- Recherche instantanée
+- Filtres par genre et année
+- Tri par date, titre ou note
+- Fiches détaillées dans une fenêtre
+- Favoris enregistrés dans le navigateur
+- Compteurs de résultats
+- Interface mobile améliorée
+- Rappel intégré sur les droits de diffusion
 
 ## Important
-Les titres/images présents sont des contenus fictifs de démonstration.
-Pour la vraie plateforme, n'ajoute que des œuvres dont tu possèdes les droits ou une licence de diffusion.
-
-## Prochaines étapes
-1. Ajouter une vraie base de données de contenus autorisés.
-2. Ajouter les comptes utilisateurs.
-3. Ajouter un lecteur vidéo hébergé légalement.
-4. Ajouter recherche, filtres et favoris.
-5. Ajouter une page de soutien/paiement.
-6. Mettre le site en ligne avec HTTPS.
+Les titres présents ici sont des exemples de démonstration. Pour mettre de vraies œuvres en ligne, utilise uniquement des contenus dont la diffusion est autorisée (domaine public, licence adaptée, contenus dont tu possèdes les droits, etc.).

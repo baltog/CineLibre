@@ -3,66 +3,57 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CinéLibre — catalogue de films et séries accessibles gratuitement et légalement.">
   <title>CinéLibre — Le cinéma pour tous</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="nav">
-  <div class="logo"><span>◉</span> Ciné<span>Libre</span></div>
-  <nav>
-    <a class="active" href="#">Accueil</a>
-    <a href="#films">Films</a>
-    <a href="#series">Séries</a>
-    <a href="#genres">Genres</a>
+  <a class="logo" href="#top" aria-label="CinéLibre accueil"><span>◉</span> Ciné<span>Libre</span></a>
+  <nav aria-label="Navigation principale">
+    <a class="active" href="#top">Accueil</a><a href="#films">Films</a><a href="#series">Séries</a><a href="#genres">Genres</a>
   </nav>
-  <input id="search" type="search" placeholder="Rechercher un film, une série...">
-  <button class="account">◯ Mon compte</button>
+  <div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="Rechercher un film, une série..." aria-label="Rechercher"></div>
+  <button class="account" id="accountBtn">◯ Mon compte</button>
 </header>
 
-<main>
+<main id="top">
 <section class="hero">
-  <div>
+  <div class="hero-copy">
     <p class="eyebrow">🎬 LE CINÉMA POUR TOUS</p>
     <h1>Bienvenue sur <strong>Ciné<span>Libre</span></strong></h1>
-    <p>Découvrez des films et séries accessibles gratuitement et légalement.</p>
+    <p>Découvrez des œuvres accessibles gratuitement et légalement, avec un catalogue pensé pour être simple, clair et agréable.</p>
     <div class="badges"><span>♥ Gratuit</span><span>✓ Légal</span><span>★ Communauté</span></div>
     <a class="cta" href="#films">Explorer le catalogue →</a>
   </div>
 </section>
 
 <section id="films" class="section">
-  <div class="section-title"><h2>Films</h2><span>Voir tout →</span></div>
+  <div class="section-title"><div><h2>Films</h2><p class="muted">Une sélection de démonstration à remplacer par des œuvres légalement disponibles.</p></div><span id="filmCount"></span></div>
+  <div class="filters"><select id="genreFilter"><option value="">Tous les genres</option></select><select id="yearFilter"><option value="">Toutes les années</option></select><select id="sortFilter"><option value="recent">Plus récents</option><option value="title">A → Z</option><option value="rating">Mieux notés</option></select></div>
   <div id="filmGrid" class="grid"></div>
 </section>
 
-<section id="series" class="section">
-  <div class="section-title"><h2>Séries</h2><span>Voir tout →</span></div>
+<section id="series" class="section alt">
+  <div class="section-title"><div><h2>Séries</h2><p class="muted">Des programmes présentés dans la même interface.</p></div><span id="seriesCount"></span></div>
   <div id="seriesGrid" class="grid"></div>
 </section>
 
 <section id="genres" class="section">
   <h2>Explorer par genre</h2>
-  <div class="genres">
-    <button>🎭 Drame</button><button>😂 Comédie</button><button>🚀 Science-fiction</button>
-    <button>✨ Fantastique</button><button>👻 Horreur</button><button>❤️ Romance</button>
-    <button>🎨 Animation</button><button>🎥 Documentaire</button>
-  </div>
+  <div class="genres" id="genreButtons"></div>
 </section>
 
 <section class="support">
-  <div>
-    <h2>Soutenir CinéLibre ❤️</h2>
-    <p>Le site reste gratuit. Plus tard, les visiteurs pourront contribuer volontairement pour aider à financer l’hébergement, les licences et le développement.</p>
-  </div>
-  <button>En savoir plus</button>
+  <div><p class="eyebrow">❤️ PROJET INDÉPENDANT</p><h2>Soutenir CinéLibre</h2><p>Le site reste gratuit. Une future page de soutien pourra proposer des contributions volontaires pour financer l’hébergement, les licences et le développement.</p></div>
+  <button id="supportBtn" class="cta">En savoir plus</button>
 </section>
 </main>
 
-<footer>
-  <div><b>Ciné<span>Libre</span></b><small>Le cinéma pour tous, en toute liberté</small></div>
-  <div>À propos · FAQ · Règles · Confidentialité · Contact</div>
-</footer>
+<footer><div><b>Ciné<span>Libre</span></b><small>Le cinéma pour tous, en toute liberté</small></div><div>À propos · FAQ · Confidentialité · Contact</div></footer>
 
+<div class="modal" id="modal" aria-hidden="true"><div class="modal-box"><button class="close" id="closeModal" aria-label="Fermer">×</button><div id="modalContent"></div></div></div>
+<div class="toast" id="toast"></div>
 <script src="script.js"></script>
 </body>
 </html>

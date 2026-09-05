@@ -1,17 +1,29 @@
-const films=[
-["Lumière sur l'océan","Documentaire"],["Le Dernier Voyage","Science-fiction"],["Un été différent","Comédie"],
-["Les Petites Étoiles","Drame"],["Au-delà des nuages","Aventure"],["Le Secret du village","Mystère"]
+const films = [
+ {id:'f1',title:"Lumière sur l'océan",genre:'Documentaire',year:2024,rating:4.7,type:'Film',desc:"Un documentaire de découverte consacré aux paysages marins et à celles et ceux qui les protègent."},
+ {id:'f2',title:'Le Dernier Voyage',genre:'Science-fiction',year:2023,rating:4.6,type:'Film',desc:"Une mission spatiale doit choisir entre rentrer chez elle ou poursuivre son voyage vers une nouvelle planète."},
+ {id:'f3',title:'Un été différent',genre:'Comédie',year:2022,rating:4.3,type:'Film',desc:"Une rencontre inattendue transforme des vacances ordinaires en souvenirs inoubliables."},
+ {id:'f4',title:'Les Petites Étoiles',genre:'Drame',year:2021,rating:4.8,type:'Film',desc:"Une histoire humaine sur les liens, les choix et la seconde chance."},
+ {id:'f5',title:'Au-delà des nuages',genre:'Aventure',year:2020,rating:4.5,type:'Film',desc:"Deux amis partent à la recherche d'un lieu oublié au cœur des montagnes."},
+ {id:'f6',title:'Le Secret du village',genre:'Mystère',year:2019,rating:4.2,type:'Film',desc:"Un village paisible cache un mystère que personne ne veut raconter."}
 ];
-const series=[
-["Les Carnets du Nord","Drame"],["Mission Horizon","Science-fiction"],["Histoires de famille","Comédie"],
-["La Maison bleue","Mystère"],["Planète sauvage","Documentaire"],["Les Explorateurs","Aventure"]
+const series = [
+ {id:'s1',title:'Les Carnets du Nord',genre:'Drame',year:2024,rating:4.7,type:'Série',desc:'Une famille revient dans sa région natale et découvre les secrets de son histoire.'},
+ {id:'s2',title:'Mission Horizon',genre:'Science-fiction',year:2023,rating:4.6,type:'Série',desc:'Une équipe explore de nouveaux mondes et doit apprendre à se faire confiance.'},
+ {id:'s3',title:'Histoires de famille',genre:'Comédie',year:2022,rating:4.4,type:'Série',desc:'Une famille pleine de caractère, des situations improbables et beaucoup de bonne humeur.'},
+ {id:'s4',title:'La Maison bleue',genre:'Mystère',year:2021,rating:4.5,type:'Série',desc:'Une maison abandonnée devient le point de départ d’une étrange enquête.'}
 ];
-function render(items,id){
- const el=document.getElementById(id);
- el.innerHTML=items.map(x=>`<article class="card"><div class="poster">🎬<br>${x[0]}</div><div><b>${x[0]}</b><br><small>${x[1]}</small></div></article>`).join("");
-}
-render(films,"filmGrid"); render(series,"seriesGrid");
-document.getElementById("search").addEventListener("input",e=>{
- const q=e.target.value.toLowerCase();
- document.querySelectorAll(".card").forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?"block":"none");
-});
+const all=[...films,...series];
+const favs=JSON.parse(localStorage.getItem('cineLibreFavorites')||'[]');
+const $=s=>document.querySelector(s);
+function poster(item){return `<div class="poster"><span>🎬</span><strong>${item.title}</strong><small>${item.year}</small></div>`}
+function card(item){const fav=favs.includes(item.id);return `<article class="card"><button class="fav ${fav?'is-fav':''}" data-fav="${item.id}" aria-label="${fav?'Retirer':'Ajouter'} des favoris">${fav?'♥':'♡'}</button>${poster(item)}<div class="card-body"><div><b>${item.title}</b><small>${item.genre} · ${item.year}</small></div><span class="rating">★ ${item.rating}</span></div><button class="details" data-id="${item.id}">Voir la fiche →</button></article>`}
+function render(list,id){$(id).innerHTML=list.map(card).join('')||'<p class="empty">Aucun résultat.</p>'; bindCards()}
+function bindCards(){document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>openModal(all.find(x=>x.id===b.dataset.id)));document.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>toggleFav(b.dataset.fav))}
+function toggleFav(id){const i=favs.indexOf(id);i>=0?favs.splice(i,1):favs.push(id);localStorage.setItem('cineLibreFavorites',JSON.stringify(favs)); applyFilters();toast(i>=0?'Retiré des favoris':'Ajouté aux favoris ❤️')}
+function applyFilters(){const q=$('#search').value.toLowerCase().trim(),g=$('#genreFilter').value,y=$('#yearFilter').value,s=$('#sortFilter').value;let f=films.filter(x=>matches(x,q,g,y)),se=series.filter(x=>matches(x,q,g,y));const sorter=(a,b)=>s==='title'?a.title.localeCompare(b.title):s==='rating'?b.rating-a.rating:b.year-a.year;f.sort(sorter);se.sort(sorter);render(f,'#filmGrid');render(se,'#seriesGrid');$('#filmCount').textContent=`${f.length} film${f.length>1?'s':''}`;$('#seriesCount').textContent=`${se.length} série${se.length>1?'s':''}`}
+function matches(x,q,g,y){return (!q||`${x.title} ${x.genre} ${x.year}`.toLowerCase().includes(q))&&(!g||x.genre===g)&&(!y||String(x.year)===y)}
+function openModal(item){$('#modalContent').innerHTML=`<p class="eyebrow">${item.type.toUpperCase()} · ${item.genre}</p><h2>${item.title}</h2><p class="modal-meta">${item.year} · ★ ${item.rating}/5</p><p>${item.desc}</p><div class="notice">⚖️ Lecteur non inclus dans cette V2 : ajoute uniquement des œuvres dont tu possèdes les droits ou qui sont légalement disponibles.</div><button class="cta" onclick="toast('La fiche est prête pour recevoir une source vidéo légale.')">▶ Regarder</button>`;$('#modal').classList.add('open');$('#modal').setAttribute('aria-hidden','false')}
+function closeModal(){$('#modal').classList.remove('open');$('#modal').setAttribute('aria-hidden','true')}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function initFilters(){const genres=[...new Set(all.map(x=>x.genre))].sort(),years=[...new Set(all.map(x=>x.year))].sort((a,b)=>b-a);genres.forEach(g=>{$('#genreFilter').insertAdjacentHTML('beforeend',`<option>${g}</option>`);$('#genreButtons').insertAdjacentHTML('beforeend',`<button data-genre="${g}">${g}</button>`)});years.forEach(y=>$('#yearFilter').insertAdjacentHTML('beforeend',`<option>${y}</option>`));document.querySelectorAll('#genreButtons button').forEach(b=>b.onclick=()=>{$('#genreFilter').value=b.dataset.genre;applyFilters();location.hash='films'})}
+$('#search').addEventListener('input',applyFilters);$('#genreFilter').addEventListener('change',applyFilters);$('#yearFilter').addEventListener('change',applyFilters);$('#sortFilter').addEventListener('change',applyFilters);$('#closeModal').onclick=closeModal;$('#modal').onclick=e=>{if(e.target.id==='modal')closeModal()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});$('#accountBtn').onclick=()=>toast(`Tes favoris : ${favs.length}`);$('#supportBtn').onclick=()=>toast('La page de soutien arrivera dans une prochaine version.');initFilters();applyFilters();
